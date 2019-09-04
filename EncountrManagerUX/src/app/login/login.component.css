@@ -1,0 +1,9 @@
+.jumbotron{
+    width: 100%;
+    max-width: 420px;
+    padding-top: 10em;
+    margin: auto;
+  }
+.form-group{
+    padding-top: 10em;
+}
