@@ -1,9 +1,15 @@
 .jumbotron{
     width: 100%;
-    max-width: 420px;
-    padding-top: 10em;
+    max-width: 42rem;
+    padding-top: 5rem;
     margin: auto;
+    border-radius: 5%;
   }
 .top-spacing{
-    padding-top: 10em;
+    padding-top: 10rem;
+}
+.input{
+  width:100%;
+  padding:.5rem;
+  text-align: center;
 }

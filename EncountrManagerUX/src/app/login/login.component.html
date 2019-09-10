@@ -1,13 +1,19 @@
 <div class="top-spacing">
     <div class="jumbotron container-fluid">
-        <form class="form">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="text-center mb-4">
+                        <h1><b>DM</b></h1>
+                        <h5>Encounter Management Tool</h5>
+                      </div>
             <div class="form-label-group">
-            <input type="email" class="form-control" placeholder="Email">
+                <input type="email" class="input" formControlName="email" placeholder="Email" required email>
             </div>
+            <br>
             <div class="form-label-group">
-            <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="input" formControlName="password" placeholder="Password" minLength="8" required>
             </div>
-            <button type=submit class="form-control">Submit</button>
+            <br>
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-dark btn-block">Login</button>
         </form>
     </div>
 </div>
