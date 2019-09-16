@@ -1,11 +1,13 @@
 package com.benji.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.benji.beans.Credentials;
 import com.benji.beans.User;
 import com.benji.data.LoginDAO;
 
+@Service
 public class LoginService {
 
 	private LoginDAO ld;

@@ -1,5 +1,7 @@
 package com.benji.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,8 +11,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CREDENTIALS")
-public class Credentials {
-	
+public class Credentials implements Serializable {
+	private static final long serialVersionUID = -6545925601128389317L;
+
 	public Credentials() {
 		super();
 	}

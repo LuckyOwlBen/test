@@ -1,5 +1,6 @@
 package com.benji.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,8 +16,12 @@ import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "USER")
-public class User {
+public class User implements Serializable {
 	
+	private static final long serialVersionUID = -5199171684966693988L;
+
+
+
 	public User() {
 		super();
 	}

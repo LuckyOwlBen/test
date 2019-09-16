@@ -3,10 +3,12 @@ package com.benji.data;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.benji.beans.Credentials;
 import com.benji.beans.User;
 
+@Repository
 public class LoginDAO {
 
 	private SessionFactory sf;
