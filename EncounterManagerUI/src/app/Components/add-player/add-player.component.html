@@ -1,0 +1,8 @@
+<div *ngIf = "name">
+  <ol>
+    <div *ngFor = "let entity of entities">
+      <li>{{entity.name}}</li>
+    </div>
+  </ol>
+</div>
+<button mat-raised-button (click)= "openDialog()">New Character </button>

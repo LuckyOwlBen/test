@@ -1,0 +1,14 @@
+
+<div mat-dialog-content>
+  <label>Name</label>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.entity.name">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.entity" cdkFocusInitial>Ok</button>
+</div>
+
+
+
