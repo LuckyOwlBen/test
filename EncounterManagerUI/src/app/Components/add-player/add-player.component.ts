@@ -19,7 +19,8 @@ export class AddPlayerComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open( AddCharacterModalComponent, {
-      width: '15rem'
+      width: '15rem',
+      data: { entity: Entity }
     });
     dialogRef.afterClosed().subscribe(result => {
     this.newEntity = result;
