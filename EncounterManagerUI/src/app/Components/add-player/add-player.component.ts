@@ -11,7 +11,7 @@ import { AddCharacterModalComponent } from '../add-character-modal/add-character
 export class AddPlayerComponent {
 
   @Input() public newEntity: Entity;
-  entities: Entity[];
+  entities: Entity[] = [];
   selectedEntity: Entity;
   name: string;
 
@@ -20,7 +20,7 @@ export class AddPlayerComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open( AddCharacterModalComponent, {
       width: '15rem',
-      data: { entity: Entity }
+      data: { entity: new Entity() }
     });
     dialogRef.afterClosed().subscribe(result => {
     this.newEntity = result;
