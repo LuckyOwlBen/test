@@ -1,8 +1,16 @@
 <div *ngIf = "entities">
-  <ol>
-    <div *ngFor = "let entity of entities">
-      <li>{{entity.name}}</li>
-    </div>
-  </ol>
+    <a *ngFor = "let entity of entities"
+      (click)= "editDialog(entity)">
+      <button>
+        {{entity.name}}
+        <button (click)= "(removeEntity(entity))">
+          X
+        </button>
+      </button>
+      <br>
+    </a>
 </div>
-<button mat-raised-button (click)= "openDialog()">New Character </button>
+
+<button mat-raised-button (click)= "openDialog()">
+  New Character
+</button>

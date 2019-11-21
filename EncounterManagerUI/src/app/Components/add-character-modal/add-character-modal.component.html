@@ -4,6 +4,14 @@
   <mat-form-field>
     <input matInput [(ngModel)]="data.entity.name">
   </mat-form-field>
+  <label>Max HP</label>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.entity.maxHp">
+  </mat-form-field>
+  <label>Armor Class</label>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.entity.armorClass">
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
