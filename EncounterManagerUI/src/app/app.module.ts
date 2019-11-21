@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { PlayerListComponent } from './Components/player-list/player-list.component';
 import { AddPlayerComponent } from './Components/add-player/add-player.component';
 import { AddCharacterModalComponent } from './Components/add-character-modal/add-character-modal.component';
+import { PlanningComponent } from './Components/planning/planning.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerListComponent,
     AddPlayerComponent,
-    AddCharacterModalComponent
+    AddCharacterModalComponent,
+    PlanningComponent
   ],
   entryComponents: [
     AddCharacterModalComponent

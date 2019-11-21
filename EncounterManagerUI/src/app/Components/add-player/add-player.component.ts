@@ -25,7 +25,9 @@ export class AddPlayerComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
     this.newEntity = result;
-    this.entities.push(this.newEntity);
+    if (this.newEntity != null) {
+      this.entities.push(this.newEntity);
+    }
     });
   }
 
