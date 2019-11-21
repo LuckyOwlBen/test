@@ -10,6 +10,7 @@ import { AddPlayerComponent } from './Components/add-player/add-player.component
 import { AddCharacterModalComponent } from './Components/add-character-modal/add-character-modal.component';
 import { PlanningComponent } from './Components/planning/planning.component';
 import { CombatComponent } from './Components/combat/combat.component';
+import { RollInitiativeComponent } from './Components/roll-initiative/roll-initiative.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CombatComponent } from './Components/combat/combat.component';
     AddPlayerComponent,
     AddCharacterModalComponent,
     PlanningComponent,
-    CombatComponent
+    CombatComponent,
+    RollInitiativeComponent
   ],
   entryComponents: [
     AddCharacterModalComponent
