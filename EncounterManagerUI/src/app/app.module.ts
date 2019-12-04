@@ -11,7 +11,8 @@ import { AddCharacterModalComponent } from './Components/add-character-modal/add
 import { PlanningComponent } from './Components/planning/planning.component';
 import { CombatComponent } from './Components/combat/combat.component';
 import { RollInitiativeService } from './Services/roll-initiative.service';
-
+import { InitiativeModalComponent } from './Components/initiative-modal/initiative-modal.component';
+import { InitiativeDataService } from './Services/InitiativeData/initiative-data.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,9 +21,11 @@ import { RollInitiativeService } from './Services/roll-initiative.service';
     AddCharacterModalComponent,
     PlanningComponent,
     CombatComponent,
+    InitiativeModalComponent
   ],
   entryComponents: [
-    AddCharacterModalComponent
+    AddCharacterModalComponent,
+    InitiativeModalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { RollInitiativeService } from './Services/roll-initiative.service';
 
   ],
   providers: [
-    RollInitiativeService
+    RollInitiativeService,
+    InitiativeDataService
   ],
   bootstrap: [AppComponent]
 })
