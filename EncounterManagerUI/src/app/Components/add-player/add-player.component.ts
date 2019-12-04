@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Entity } from '../../Models/Entity';
 import { AddCharacterModalComponent } from '../add-character-modal/add-character-modal.component';
+import { RollInitiativeService } from '../../Services/roll-initiative.service';
 
 @Component({
   selector: 'app-add-player',
@@ -16,7 +18,11 @@ export class AddPlayerComponent {
   name: string;
   currentIndex: number;
 
-  constructor(public dialog: MatDialog ) { }
+  constructor(
+      public dialog: MatDialog,
+      private rollInitiativeService: RollInitiativeService,
+      private router: Router,
+    ) { }
 
   openDialog(): void {
     const dialogRef = this.dialog.open( AddCharacterModalComponent, {
@@ -46,6 +52,11 @@ export class AddPlayerComponent {
   removeEntity(selectedEntity): void {
     this.currentIndex = this.entities.indexOf(selectedEntity);
     this.entities.splice(this.currentIndex, 1);
+  }
+
+  entityTransfer(): void {
+    this.rollInitiativeService.setData(this.entities);
+    this.router.navigate(['/combat']);
   }
 
 }

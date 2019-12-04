@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RollInitiativeService } from '../../Services/roll-initiative.service';
+import { Entity } from '../../Models/Entity';
 
 @Component({
   selector: 'app-combat',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CombatComponent implements OnInit {
 
-  constructor() { }
+  entities: Entity[];
+
+  constructor(
+    public rollInitiativeService: RollInitiativeService
+    ) { }
 
   ngOnInit() {
+    this.entities = this.rollInitiativeService.getData();
   }
 
 }
