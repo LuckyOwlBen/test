@@ -12,7 +12,8 @@ export class AddCharacterModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AddCharacterModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    ) {}
 
     onNoClick(): void {
     this.dialogRef.close();

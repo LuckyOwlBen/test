@@ -1,15 +1,10 @@
 <div mat-dialog-content>
+  <h3>Roll Initiative</h3>
   <label>{{selectedEntity.name}}</label>
-  <label>Max HP</label>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.entity.maxHp">
-  </mat-form-field>
-  <label>Armor Class</label>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.entity.armorClass">
+    <input matInput [(ngModel)]="selectedEntity.initiativeTotal">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.entity" cdkFocusInitial>Ok</button>
+  <button mat-button (click) = 'iterateArray()'>Next</button>
 </div>

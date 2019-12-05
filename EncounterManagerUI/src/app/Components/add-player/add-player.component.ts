@@ -4,7 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Entity } from '../../Models/Entity';
 import { AddCharacterModalComponent } from '../add-character-modal/add-character-modal.component';
 import { RollInitiativeService } from '../../Services/roll-initiative.service';
-import { InitiativeModalComponent } from '../initiative-modal/initiative-modal.component'
+import { InitiativeModalComponent } from '../initiative-modal/initiative-modal.component';
+import { InitiativeDataService } from '../../Services/InitiativeData/initiative-data.service';
 @Component({
   selector: 'app-add-player',
   templateUrl: './add-player.component.html',
@@ -22,6 +23,7 @@ export class AddPlayerComponent {
       public dialog: MatDialog,
       private rollInitiativeService: RollInitiativeService,
       private router: Router,
+      private initiativeDataService: InitiativeDataService,
     ) { }
 
   openDialog(): void {
@@ -56,15 +58,10 @@ export class AddPlayerComponent {
 
   entityTransfer(): void {
     this.rollInitiativeService.setData(this.entities);
+    this.initiativeDataService.setData(this.entities);
     const dialogRef = this.dialog.open( InitiativeModalComponent, {
       width: '15rem'
     });
-    dialogRef.afterClosed().subscribe(result => {
-      /*this.newEntity = result;
-      if (this.newEntity != null) {
-        this.entities.push(this.newEntity);
-      }*/
-      });
     this.router.navigate(['/combat']);
   }
 
