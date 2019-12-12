@@ -1,3 +1,5 @@
+import { Conditions } from './Conditions';
+
 export class Entity {
     name: string;
     maxHp: number;
@@ -6,5 +8,5 @@ export class Entity {
     initiativeMod: number;
     initiativeTotal: number;
     type: string;
-    condition: string[];
+    condition: Conditions;
 }

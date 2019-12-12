@@ -33,6 +33,7 @@ export class AddPlayerComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
     this.newEntity = result;
+    this.newEntity.currentHp = this.newEntity.maxHp;
     if (this.newEntity != null) {
       this.entities.push(this.newEntity);
     }
@@ -62,7 +63,9 @@ export class AddPlayerComponent {
     const dialogRef = this.dialog.open( InitiativeModalComponent, {
       width: '15rem'
     });
-    this.router.navigate(['/combat']);
+    dialogRef.afterClosed().subscribe(result => {
+      this.router.navigate(['/combat']);
+    });
   }
 
 }

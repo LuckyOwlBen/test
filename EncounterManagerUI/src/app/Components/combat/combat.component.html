@@ -1,11 +1,29 @@
 <h1> This Is Combat </h1>
 <div *ngIf = "entities">
   <a *ngFor = "let entity of entities">
-    <button>
+    <button (click)="selectTarget(entity)">
       {{entity.name}}
+      <button (click)="death(entity)">
+        <h3>&#9760;</h3>
+      </button>
     </button>
     <br>
   </a>
 </div>
-
+<button (click)= "nextTurn()">Next Turn</button>
 <button (click)="entityTransfer()">End Encounter</button>
+<div>
+  <h3>Round {{roundCounter}}</h3>
+  <h3>Turn {{turnCounter}}</h3>
+</div>
+<h3> Current Turn </h3>
+<h3>{{currentEntity.name}}</h3>
+
+
+<div *ngIf = "target">
+  <h3>Current Target</h3>
+  <h3>{{target.name}}</h3>
+  <h3>{{target.initiativeTotal}}</h3>
+  <input [(ngModel)] = "target.currentHp" type="number" [placeholder] = "target.currentHp">
+
+</div>
