@@ -10,9 +10,10 @@ import { AddPlayerComponent } from './Components/add-player/add-player.component
 import { AddCharacterModalComponent } from './Components/add-character-modal/add-character-modal.component';
 import { PlanningComponent } from './Components/planning/planning.component';
 import { CombatComponent } from './Components/combat/combat.component';
-import { RollInitiativeService } from './Services/roll-initiative.service';
 import { InitiativeModalComponent } from './Components/initiative-modal/initiative-modal.component';
 import { InitiativeDataService } from './Services/InitiativeData/initiative-data.service';
+import { TargetComponent } from './Components/target-modal/target.component';
+import { CombatDataService } from './Services/CombatData/combat-data.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,11 +22,13 @@ import { InitiativeDataService } from './Services/InitiativeData/initiative-data
     AddCharacterModalComponent,
     PlanningComponent,
     CombatComponent,
-    InitiativeModalComponent
+    InitiativeModalComponent,
+    TargetComponent
   ],
   entryComponents: [
     AddCharacterModalComponent,
-    InitiativeModalComponent
+    InitiativeModalComponent,
+    TargetComponent
   ],
   imports: [
     BrowserModule,
@@ -35,8 +38,8 @@ import { InitiativeDataService } from './Services/InitiativeData/initiative-data
 
   ],
   providers: [
-    RollInitiativeService,
-    InitiativeDataService
+    InitiativeDataService,
+    CombatDataService
   ],
   bootstrap: [AppComponent]
 })

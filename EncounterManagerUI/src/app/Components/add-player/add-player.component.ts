@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Entity } from '../../Models/Entity';
 import { AddCharacterModalComponent } from '../add-character-modal/add-character-modal.component';
-import { RollInitiativeService } from '../../Services/roll-initiative.service';
 import { InitiativeModalComponent } from '../initiative-modal/initiative-modal.component';
 import { InitiativeDataService } from '../../Services/InitiativeData/initiative-data.service';
 @Component({
@@ -21,7 +20,6 @@ export class AddPlayerComponent {
 
   constructor(
       public dialog: MatDialog,
-      private rollInitiativeService: RollInitiativeService,
       private router: Router,
       private initiativeDataService: InitiativeDataService,
     ) { }
@@ -29,7 +27,8 @@ export class AddPlayerComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open( AddCharacterModalComponent, {
       width: '15rem',
-      data: { entity: new Entity() }
+      disableClose: true,
+      data: { entity: new Entity() },
     });
     dialogRef.afterClosed().subscribe(result => {
     this.newEntity = result;
@@ -58,10 +57,10 @@ export class AddPlayerComponent {
   }
 
   entityTransfer(): void {
-    this.rollInitiativeService.setData(this.entities);
     this.initiativeDataService.setData(this.entities);
     const dialogRef = this.dialog.open( InitiativeModalComponent, {
-      width: '15rem'
+      width: '15rem',
+      disableClose: true,
     });
     dialogRef.afterClosed().subscribe(result => {
       this.router.navigate(['/combat']);

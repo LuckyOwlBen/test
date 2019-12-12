@@ -26,7 +26,7 @@ export class InitiativeModalComponent implements OnInit {
     this.selectedEntity = this.entities[this.iterator];
   }
 
-  onNoClick(): void {
+  onNoClick() {
     this.dialogRef.close();
   }
 

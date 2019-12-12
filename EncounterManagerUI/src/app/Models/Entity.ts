@@ -8,5 +8,5 @@ export class Entity {
     initiativeMod: number;
     initiativeTotal: number;
     type: string;
-    condition: Conditions;
+    condition = new Conditions();
 }

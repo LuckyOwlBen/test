@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RollInitiativeService } from '../../Services/roll-initiative.service';
 import { Entity } from '../../Models/Entity';
-import { Conditions } from '../../Models/Conditions';
+import { InitiativeDataService } from '../../Services/InitiativeData/initiative-data.service';
+import { CombatDataService } from '../../Services/CombatData/combat-data.service';
+import { TargetComponent } from '../target-modal/target.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-combat',
@@ -11,42 +13,47 @@ import { Conditions } from '../../Models/Conditions';
 })
 export class CombatComponent implements OnInit {
 
-  conditions: string [];
   entities: Entity[];
   currentEntity: Entity;
   target: Entity;
   targetLocation: number;
+  currentConditions = new Map<string, boolean>();
   turnCounter = 1;
   roundCounter = 1;
 
   constructor(
-    private rollInitiativeService: RollInitiativeService,
+    private initiativeDataService: InitiativeDataService,
+    public dialog: MatDialog,
+    private combatDataService: CombatDataService,
     private router: Router,
     ) { }
 
   ngOnInit() {
-    this.entities = this.rollInitiativeService.getData();
+    this.entities = this.initiativeDataService.getData();
     this.target = null;
     this.currentEntity = this.entities.shift();
   }
 
   entityTransfer(): void {
-    this.rollInitiativeService.setData(this.entities);
+    this.initiativeDataService.setData(this.entities);
     this.router.navigate(['/planning']);
   }
 
   nextTurn() {
     this.entities.push(this.currentEntity);
     this.currentEntity = this.entities.shift();
-    this.conditions = Object.keys((this.currentEntity.condition));
-    this.conditions.forEach(x => console.log(x));
+    this.convertConditonsToMap();
     this.turnTracker();
     this.target = null;
   }
 
   selectTarget(target) {
-    this.targetLocation = this.entities.indexOf(target);
     this.target = target;
+    this.combatDataService.setData(this.currentEntity, target);
+    const dialogRef = this.dialog.open(TargetComponent, {
+      width: '15rem',
+      disableClose: true,
+    });
   }
 
   turnTracker(): void {
@@ -62,5 +69,16 @@ export class CombatComponent implements OnInit {
     this.entities.splice(this.entities.indexOf(entity), 1);
   }
 
+  convertConditonsToMap() {
+    let iterator = 0;
+    let conditionKeys: string[] = new Array();
+    let conditionValues: boolean[] =  new Array();
 
+    conditionKeys = Object.keys(this.currentEntity.condition);
+    conditionValues = Object.values(this.currentEntity.condition);
+    conditionKeys.forEach(element => {
+      this.currentConditions.set(element, conditionValues[iterator]);
+      iterator++;
+    });
+  }
 }
