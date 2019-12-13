@@ -13,11 +13,12 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CombatComponent implements OnInit {
 
+  afflicted = false;
+  afflictedBy = new Array();
   entities: Entity[];
   currentEntity: Entity;
   target: Entity;
   targetLocation: number;
-  currentConditions = new Map<string, boolean>();
   turnCounter = 1;
   roundCounter = 1;
 
@@ -43,6 +44,7 @@ export class CombatComponent implements OnInit {
     this.entities.push(this.currentEntity);
     this.currentEntity = this.entities.shift();
     this.turnTracker();
+    this.checkAfflicted();
     this.target = null;
   }
 
@@ -67,5 +69,15 @@ export class CombatComponent implements OnInit {
 
   death(entity) {
     this.entities.splice(this.entities.indexOf(entity), 1);
+  }
+
+  checkAfflicted() {
+    this.afflictedBy = new Array();
+    this.currentEntity.condition.forEach((value: boolean, key: string) => {
+      if (value) {
+        this.afflicted = true;
+        this.afflictedBy.push(key);
+      }
+    });
   }
 }

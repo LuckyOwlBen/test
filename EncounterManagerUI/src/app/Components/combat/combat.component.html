@@ -18,4 +18,10 @@
 </div>
 <h3> Current Turn </h3>
 <h3>{{currentEntity.name}}</h3>
+<div *ngIf = "afflicted">
+  <h3>Afflicted By</h3>
+  <div *ngFor = "let afflict of afflictedBy">
+    <h4>{{afflict}}</h4>
+  </div>
+</div>
 
