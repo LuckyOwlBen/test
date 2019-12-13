@@ -57,7 +57,6 @@ export class TargetComponent implements OnInit {
 
   inflictCondition(key: string) {
     this.target.condition.set(key, true);
-    console.log(this.target.condition);
     this.addCondition = false;
   }
 
