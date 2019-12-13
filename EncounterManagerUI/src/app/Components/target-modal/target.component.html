@@ -3,4 +3,10 @@
 <input matInput [(ngModel)] = 'change' type = 'number'>
 <button (click) = 'damageTarget(change)'>Deal Damage</button>
 <button (click) = 'healTarget(change)'> Heal Target</button>
+<button (click) = 'setCondition()'>Add Condition</button>
+<div *ngIf = 'addCondition'>
+  <div *ngFor = 'let key of conditionKeys'>
+    <button (click) = 'inflictCondition(key)'>{{key}}</button>
+  </div>
+</div>
 <button (click) = 'endActions()'>X</button>

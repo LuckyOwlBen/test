@@ -10,8 +10,10 @@ export class CombatDataService {
   private currentEntity: Entity;
   private target: Entity;
 
-  setData(currentEntity: Entity, target: Entity) {
+  setEntity(currentEntity: Entity) {
     this.currentEntity = currentEntity;
+  }
+  setTarget(target: Entity) {
     this.target = target;
   }
 
@@ -22,5 +24,4 @@ export class CombatDataService {
   getTarget(): Entity {
     return this.target;
   }
-
 }

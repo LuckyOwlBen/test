@@ -42,14 +42,14 @@ export class CombatComponent implements OnInit {
   nextTurn() {
     this.entities.push(this.currentEntity);
     this.currentEntity = this.entities.shift();
-    this.convertConditonsToMap();
     this.turnTracker();
     this.target = null;
   }
 
   selectTarget(target) {
     this.target = target;
-    this.combatDataService.setData(this.currentEntity, target);
+    this.combatDataService.setEntity(this.currentEntity);
+    this.combatDataService.setTarget(this.target);
     const dialogRef = this.dialog.open(TargetComponent, {
       width: '15rem',
       disableClose: true,
@@ -67,18 +67,5 @@ export class CombatComponent implements OnInit {
 
   death(entity) {
     this.entities.splice(this.entities.indexOf(entity), 1);
-  }
-
-  convertConditonsToMap() {
-    let iterator = 0;
-    let conditionKeys: string[] = new Array();
-    let conditionValues: boolean[] =  new Array();
-
-    conditionKeys = Object.keys(this.currentEntity.condition);
-    conditionValues = Object.values(this.currentEntity.condition);
-    conditionKeys.forEach(element => {
-      this.currentConditions.set(element, conditionValues[iterator]);
-      iterator++;
-    });
   }
 }
