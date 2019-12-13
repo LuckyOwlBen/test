@@ -15,6 +15,7 @@ export class TargetComponent implements OnInit {
     public dialogRef: MatDialogRef<TargetComponent>,
   ) { }
 
+  hit = false;
   currentEntity: Entity;
   target: Entity;
   change: number;
@@ -27,9 +28,17 @@ export class TargetComponent implements OnInit {
     this.conditionKeys = Array.from(this.target.condition.keys());
   }
 
+  attackRoll(attack: number) {
+    if (Number.isInteger(attack)) {
+      if (attack >= this.target.armorClass) {
+        this.hit = true;
+      }
+    }
+  }
   damageTarget(damage) {
     if (Number.isInteger(damage)) {
       this.target.currentHp -= damage;
+      this.hit = false;
     }
   }
 
@@ -45,6 +54,7 @@ export class TargetComponent implements OnInit {
 
   inflictCondition(key: string) {
     this.target.condition.set(key, true);
+    console.log(this.target.condition);
     this.addCondition = false;
   }
 
