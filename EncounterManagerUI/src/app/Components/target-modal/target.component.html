@@ -1,6 +1,6 @@
 <h3>{{currentEntity.name}} Targets {{target.name}}</h3>
 <h3>{{target.currentHp}}</h3>
-<input matInput [(ngModel)] = 'change'>
+<input matInput [(ngModel)] = 'change' type = 'number'>
 <button (click) = 'damageTarget(change)'>Deal Damage</button>
 <button (click) = 'healTarget(change)'> Heal Target</button>
 <button (click) = 'endActions()'>X</button>

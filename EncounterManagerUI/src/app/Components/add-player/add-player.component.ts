@@ -5,11 +5,13 @@ import { Entity } from '../../Models/Entity';
 import { AddCharacterModalComponent } from '../add-character-modal/add-character-modal.component';
 import { InitiativeModalComponent } from '../initiative-modal/initiative-modal.component';
 import { InitiativeDataService } from '../../Services/InitiativeData/initiative-data.service';
+
 @Component({
   selector: 'app-add-player',
   templateUrl: './add-player.component.html',
   styleUrls: ['./add-player.component.css']
 })
+
 export class AddPlayerComponent {
 
   @Input() public newEntity: Entity;

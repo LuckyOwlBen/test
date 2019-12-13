@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { CombatDataService } from '../../Services/CombatData/combat-data.service';
 import { Entity } from '../../Models/Entity';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-target',
@@ -29,8 +28,8 @@ export class TargetComponent implements OnInit {
     this.target.currentHp -= damage;
   }
 
-  healTarget(healing) {
-    this.target.currentHp += healing;
+  healTarget(healing: number) {
+    this.target.currentHp -= (-healing);
   }
 
   endActions() {
