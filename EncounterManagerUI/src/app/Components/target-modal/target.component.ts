@@ -32,6 +32,7 @@ export class TargetComponent implements OnInit {
     if (Number.isInteger(attack)) {
       if (attack >= this.target.armorClass) {
         this.hit = true;
+        this.change = null;
       }
     }
   }
@@ -39,12 +40,14 @@ export class TargetComponent implements OnInit {
     if (Number.isInteger(damage)) {
       this.target.currentHp -= damage;
       this.hit = false;
+      this.change = null;
     }
   }
 
   healTarget(healing: number) {
     if (Number.isInteger(healing)) {
       this.target.currentHp -= (-healing);
+      this.change = null;
     }
   }
 
@@ -63,5 +66,4 @@ export class TargetComponent implements OnInit {
     this.combatDataService.setTarget(this.target);
     this.dialogRef.close();
   }
-
 }

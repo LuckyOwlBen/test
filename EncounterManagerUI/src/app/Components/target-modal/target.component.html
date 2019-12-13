@@ -3,7 +3,7 @@
 <input matInput [(ngModel)] = 'change' type = 'number'>
 <div *ngIf = "!hit">
   <button (click) = "attackRoll(change)">Make an attack</button>
-  <button (click) = "damageTarget(change">Damage on a miss</button>
+  <button (click) = "damageTarget(change)">Damage on a miss</button>
   <button (click) = 'healTarget(change)'> Heal Target</button>
 </div>
 <div *ngIf = "hit">
