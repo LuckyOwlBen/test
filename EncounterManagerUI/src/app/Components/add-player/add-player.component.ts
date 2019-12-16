@@ -33,11 +33,13 @@ export class AddPlayerComponent {
       data: { entity: new Entity() },
     });
     dialogRef.afterClosed().subscribe(result => {
-    this.newEntity = result;
-    this.newEntity.currentHp = this.newEntity.maxHp;
-    if (this.newEntity != null) {
-      this.entities.push(this.newEntity);
-    }
+      if (result) {
+        this.newEntity = result;
+        this.newEntity.currentHp = this.newEntity.maxHp;
+        if (this.newEntity != null) {
+          this.entities.push(this.newEntity);
+        }
+      }
     });
   }
 
@@ -47,9 +49,9 @@ export class AddPlayerComponent {
       data: { entity: selectedEntity }
     });
     dialogRef.afterClosed().subscribe(result => {
-    this.selectedEntity = result;
-    this.currentIndex = this.entities.indexOf(selectedEntity);
-    this.entities.splice(this.currentIndex, 1 , selectedEntity);
+      this.selectedEntity = result;
+      this.currentIndex = this.entities.indexOf(selectedEntity);
+      this.entities.splice(this.currentIndex, 1 , selectedEntity);
     });
   }
 
