@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Afflictioninterface } from '../../Interfaces/AfflictionInterface';
+import { AfflictionInterface } from '../../Interfaces/AfflictionInterface';
 import { AfflictionServiceService } from '../../Services/AfflictionService/affliction-service.service';
 @Component({
   selector: 'app-affliction-modal',
@@ -11,7 +11,7 @@ export class AfflictionModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AfflictionModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Afflictioninterface,
+    @Inject(MAT_DIALOG_DATA) public data: AfflictionInterface,
     private afflictionService: AfflictionServiceService,
     ) {}
 

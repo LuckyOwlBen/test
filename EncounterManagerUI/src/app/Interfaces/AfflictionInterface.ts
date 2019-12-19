@@ -1,4 +1,4 @@
-export interface Afflictioninterface {
+export interface AfflictionInterface {
   condition: string;
 
 }
