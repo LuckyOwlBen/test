@@ -1,4 +1,5 @@
 <h1> This Is Combat </h1>
+<app-turn-tracker></app-turn-tracker>
 <div *ngIf = "entities">
   <a *ngFor = "let entity of entities">
     <button (click)="selectTarget(entity)">
@@ -12,12 +13,10 @@
 </div>
 <button (click)= "nextTurn()">Next Turn</button>
 <button (click)="entityTransfer()">End Encounter</button>
-<div>
-  <h3>Round {{roundCounter}}</h3>
-  <h3>Turn {{turnCounter}}</h3>
+<div *ngIf = "entities">
+  <h3> Current Turn </h3>
+  <h3>{{currentEntity.name}}</h3>
 </div>
-<h3> Current Turn </h3>
-<h3>{{currentEntity.name}}</h3>
 <div *ngIf = "afflicted">
   <h3>Afflicted By</h3>
   <div *ngFor = "let afflict of afflictedBy">

@@ -13,6 +13,7 @@ import { InitiativeModalComponent } from './Components/initiative-modal/initiati
 import { InitiativeDataService } from './Services/InitiativeData/initiative-data.service';
 import { TargetComponent } from './Components/target-modal/target.component';
 import { CombatDataService } from './Services/CombatData/combat-data.service';
+import { TurnTrackerComponent } from './Components/turn-tracker/turn-tracker.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { CombatDataService } from './Services/CombatData/combat-data.service';
     PlanningComponent,
     CombatComponent,
     InitiativeModalComponent,
-    TargetComponent
+    TargetComponent,
+    TurnTrackerComponent
   ],
   entryComponents: [
     AddCharacterModalComponent,
@@ -37,7 +39,9 @@ import { CombatDataService } from './Services/CombatData/combat-data.service';
   ],
   providers: [
     InitiativeDataService,
-    CombatDataService
+    CombatDataService,
+    TurnTrackerComponent,
+    CombatComponent
   ],
   bootstrap: [AppComponent]
 })

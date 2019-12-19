@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
 import { Entity } from '../../Models/Entity';
 import { InitiativeDataService } from '../../Services/InitiativeData/initiative-data.service';
 import { CombatDataService } from '../../Services/CombatData/combat-data.service';
 import { TargetComponent } from '../target-modal/target.component';
-import { MatDialog } from '@angular/material/dialog';
+import { TurnTrackerComponent } from '../turn-tracker/turn-tracker.component';
+
 
 @Component({
   selector: 'app-combat',
@@ -13,37 +16,41 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CombatComponent implements OnInit {
 
+  @ViewChild(TurnTrackerComponent, {static: true})
+  private turnTracker: TurnTrackerComponent;
   afflicted = false;
   afflictedBy = new Array();
   entities: Entity[];
   currentEntity: Entity;
   target: Entity;
   targetLocation: number;
-  turnCounter = 1;
-  roundCounter = 1;
 
   constructor(
     private initiativeDataService: InitiativeDataService,
     public dialog: MatDialog,
     private combatDataService: CombatDataService,
     private router: Router,
-    ) { }
+  ) { }
 
   ngOnInit() {
-    this.entities = this.initiativeDataService.getData();
+    this.initiativeDataService.getData().subscribe(entity => {
+      this.entities = entity;
+    });
     this.target = null;
-    this.currentEntity = this.entities.shift();
+    if (this.entities) {
+      this.currentEntity = this.entities.shift();
+    }
   }
 
   entityTransfer(): void {
-    this.initiativeDataService.setData(this.entities);
+    this.initiativeDataService.setData(of(this.entities));
     this.router.navigate(['/planning']);
   }
 
   nextTurn() {
     this.entities.push(this.currentEntity);
     this.currentEntity = this.entities.shift();
-    this.turnTracker();
+    this.turnTracker.turnTracker(this.entities.length);
     this.checkAfflicted();
     this.target = null;
   }
@@ -56,15 +63,6 @@ export class CombatComponent implements OnInit {
       width: '15rem',
       disableClose: true,
     });
-  }
-
-  turnTracker(): void {
-    if (this.turnCounter <= this.entities.length ) {
-      this.turnCounter++;
-    } else {
-      this.roundCounter++;
-      this.turnCounter = 1;
-    }
   }
 
   death(entity) {

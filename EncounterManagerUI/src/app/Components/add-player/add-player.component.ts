@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { of } from 'rxjs';
 import { Entity } from '../../Models/Entity';
 import { AddCharacterModalComponent } from '../add-character-modal/add-character-modal.component';
 import { InitiativeModalComponent } from '../initiative-modal/initiative-modal.component';
@@ -61,7 +62,7 @@ export class AddPlayerComponent {
   }
 
   entityTransfer(): void {
-    this.initiativeDataService.setData(this.entities);
+    this.initiativeDataService.setData(of(this.entities));
     const dialogRef = this.dialog.open( InitiativeModalComponent, {
       width: '15rem',
       disableClose: true,

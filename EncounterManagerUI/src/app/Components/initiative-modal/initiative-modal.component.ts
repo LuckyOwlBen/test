@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { Observable, of } from 'rxjs';
 import { InitiativeDataService } from '../../Services/InitiativeData/initiative-data.service';
 import { Entity } from '../../Models/Entity';
 import { Router } from '@angular/router';
@@ -22,7 +23,9 @@ export class InitiativeModalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.entities = this.initiativeDataService.getData();
+    this.initiativeDataService.getData().subscribe(entity => {
+      this.entities = entity;
+    });
     this.selectedEntity = this.entities[this.iterator];
   }
 
@@ -45,7 +48,7 @@ export class InitiativeModalComponent implements OnInit {
 
         return 0;
       });
-      this.initiativeDataService.setData(this.entities);
+      this.initiativeDataService.setData(of(this.entities));
       this.onNoClick();
     }
   }
