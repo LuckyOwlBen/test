@@ -14,6 +14,8 @@ import { InitiativeDataService } from './Services/InitiativeData/initiative-data
 import { TargetComponent } from './Components/target-modal/target.component';
 import { CombatDataService } from './Services/CombatData/combat-data.service';
 import { TurnTrackerComponent } from './Components/turn-tracker/turn-tracker.component';
+import { AfflictionsComponent } from './Components/afflictions/afflictions.component';
+import { AfflictionModalComponent } from './Components/affliction-modal/affliction-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,12 +25,15 @@ import { TurnTrackerComponent } from './Components/turn-tracker/turn-tracker.com
     CombatComponent,
     InitiativeModalComponent,
     TargetComponent,
-    TurnTrackerComponent
+    TurnTrackerComponent,
+    AfflictionsComponent,
+    AfflictionModalComponent
   ],
   entryComponents: [
     AddCharacterModalComponent,
     InitiativeModalComponent,
-    TargetComponent
+    TargetComponent,
+    AfflictionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,7 @@ import { TurnTrackerComponent } from './Components/turn-tracker/turn-tracker.com
     InitiativeDataService,
     CombatDataService,
     TurnTrackerComponent,
-    CombatComponent
+    AfflictionsComponent,
   ],
   bootstrap: [AppComponent]
 })

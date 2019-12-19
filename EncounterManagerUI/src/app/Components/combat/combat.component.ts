@@ -7,6 +7,7 @@ import { InitiativeDataService } from '../../Services/InitiativeData/initiative-
 import { CombatDataService } from '../../Services/CombatData/combat-data.service';
 import { TargetComponent } from '../target-modal/target.component';
 import { TurnTrackerComponent } from '../turn-tracker/turn-tracker.component';
+import { AfflictionsComponent } from '../afflictions/afflictions.component';
 
 
 @Component({
@@ -18,8 +19,11 @@ export class CombatComponent implements OnInit {
 
   @ViewChild(TurnTrackerComponent, {static: true})
   private turnTracker: TurnTrackerComponent;
-  afflicted = false;
-  afflictedBy = new Array();
+
+  @ViewChild(AfflictionsComponent,{static:true})
+  private afflictions: AfflictionsComponent;
+
+
   entities: Entity[];
   currentEntity: Entity;
   target: Entity;
@@ -48,10 +52,11 @@ export class CombatComponent implements OnInit {
   }
 
   nextTurn() {
+    this.afflictions.removeAffliction(this.currentEntity);
     this.entities.push(this.currentEntity);
     this.currentEntity = this.entities.shift();
     this.turnTracker.turnTracker(this.entities.length);
-    this.checkAfflicted();
+    this.afflictions.checkAfflicted(this.currentEntity);
     this.target = null;
   }
 
@@ -67,15 +72,5 @@ export class CombatComponent implements OnInit {
 
   death(entity) {
     this.entities.splice(this.entities.indexOf(entity), 1);
-  }
-
-  checkAfflicted() {
-    this.afflictedBy = new Array();
-    this.currentEntity.condition.forEach((value: boolean, key: string) => {
-      if (value) {
-        this.afflicted = true;
-        this.afflictedBy.push(key);
-      }
-    });
   }
 }
