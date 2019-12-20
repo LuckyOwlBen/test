@@ -1,9 +1,7 @@
 export class Conditions {
-  advantage = false;
   blinded = false;
   charmed = false;
   deafened = false;
-  disadvantage = false;
   fatigued = false;
   frightened = false;
   grappled = false;

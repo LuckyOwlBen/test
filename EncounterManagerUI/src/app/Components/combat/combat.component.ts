@@ -42,7 +42,7 @@ export class CombatComponent {
     this.combatService.setEntity(this.combatEntities.currentEntity);
     this.currentTurn.currentEntity = this.combatService.getCurrentEntity();
     this.turnTracker.turnTracker(this.combatEntities.entities.length);
-    this.afflictions.checkAfflicted(this.combatEntities.currentEntity);
+    this.combatEntities.currentEntity = this.afflictions.checkAfflicted(this.combatEntities.currentEntity);
     this.combatEntities.target = null;
   }
 }

@@ -9,6 +9,8 @@ export class Entity {
     initiativeMod: number;
     initiativeTotal: number;
     type: string;
+    advantage: boolean;
+    disadvantage: boolean;
     condition = this.convertConditonsToMap(this.conditionObject);
 
     private convertConditonsToMap(conditionObject: Conditions): Map<string, boolean> {

@@ -29,7 +29,7 @@ export class TargetComponent implements OnInit {
     this.currentEntity = this.combatDataService.getCurrentEntity();
     this.target = this.combatDataService.getTarget();
     this.conditionKeys = Array.from(this.target.condition.keys());
-    if(this.currentEntity.condition.get('advantage') || this.currentEntity.condition.get('disadvantage')){
+    if(this.currentEntity.advantage || this.currentEntity.disadvantage) {
       this.conditionalRoll = true;
     } else {
       this.conditionalRoll = false;
@@ -41,24 +41,24 @@ export class TargetComponent implements OnInit {
       if (attack >= this.target.armorClass) {
         this.hit = true;
         this.change = null;
+        this.conditionTrigger = false;
+        if(this.conditionalRoll){
+          this.conditionTrigger = true;
+          this.conditionalRoll = false;
+        }
       }
     }
   }
 
   specialRoll(regular: number, second: number){
-    this.conditionTrigger = false;
-    if(this.conditionalRoll){
-      this.conditionTrigger = true;
-      this.conditionalRoll = false;
-    }
-    if(this.currentEntity.condition.get('advantage')) {
+    if(this.currentEntity.advantage) {
       if(regular > second){
         this.attackRoll(regular);
       } else{
         this.attackRoll(second);
       }
     }
-    if(this.currentEntity.condition.get('disadvantage')) {
+    if(this.currentEntity.disadvantage) {
       if(regular < second){
         this.attackRoll(regular);
       } else{
