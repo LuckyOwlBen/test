@@ -1,9 +1,9 @@
 <div *ngIf = "entities">
     <a *ngFor = "let entity of entities"
       (click)= "editDialog(entity)">
-      <button>
+      <button mat-raised-button>
         {{entity.name}}
-        <button (click)= "(removeEntity(entity))">
+        <button mat-icon-button (click)= "(removeEntity(entity))">
           X
         </button>
       </button>
