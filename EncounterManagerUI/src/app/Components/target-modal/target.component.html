@@ -1,8 +1,16 @@
 <h3>{{currentEntity.name}} Targets {{target.name}}</h3>
 <h3>{{target.currentHp}}</h3>
-<input matInput [(ngModel)] = 'change' type = 'number'>
+<input matInput [(ngModel)] = 'change' type = 'number' placeholder="Dice Roll Goes Here">
+<div *ngIf = "conditionalRoll">
+  <input matInput [(ngModel)] = 'advantage' type = 'number' placeholder="Conditional Dice Roll Goes Here">
+</div>
 <div *ngIf = "!hit">
-  <button (click) = "attackRoll(change)">Make an attack</button>
+  <div *ngIf = "!conditionalRoll">
+    <button (click) = "attackRoll(change)">Make an attack</button>
+  </div>
+  <div *ngIf = "conditionalRoll">
+    <button (click) = "specialRoll(change, advantage)">Conditional Attack Roll</button>
+  </div>
   <button (click) = "damageTarget(change)">Damage on a miss</button>
   <button (click) = 'healTarget(change)'> Heal Target</button>
 </div>
