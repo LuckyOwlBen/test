@@ -16,6 +16,8 @@ import { CombatDataService } from './Services/CombatData/combat-data.service';
 import { TurnTrackerComponent } from './Components/turn-tracker/turn-tracker.component';
 import { AfflictionsComponent } from './Components/afflictions/afflictions.component';
 import { AfflictionModalComponent } from './Components/affliction-modal/affliction-modal.component';
+import { CombatEntitiesComponent } from './Components/combat-entities/combat-entities.component';
+import { CurrentTurnComponent } from './Components/current-turn/current-turn.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,9 @@ import { AfflictionModalComponent } from './Components/affliction-modal/afflicti
     TargetComponent,
     TurnTrackerComponent,
     AfflictionsComponent,
-    AfflictionModalComponent
+    AfflictionModalComponent,
+    CombatEntitiesComponent,
+    CurrentTurnComponent
   ],
   entryComponents: [
     AddCharacterModalComponent,
@@ -47,6 +51,8 @@ import { AfflictionModalComponent } from './Components/affliction-modal/afflicti
     CombatDataService,
     TurnTrackerComponent,
     AfflictionsComponent,
+    CombatEntitiesComponent,
+    CurrentTurnComponent,
   ],
   bootstrap: [AppComponent]
 })

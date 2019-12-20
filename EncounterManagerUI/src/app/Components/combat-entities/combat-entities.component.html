@@ -1,0 +1,12 @@
+<div *ngIf = "entities">
+  <a *ngFor = "let entity of entities">
+    <button (click)="selectTarget(entity)">
+      {{entity.name}}
+      <button (click)="death(entity)">
+        <h3>&#9760;</h3>
+      </button>
+    </button>
+    <br>
+  </a>
+</div>
+

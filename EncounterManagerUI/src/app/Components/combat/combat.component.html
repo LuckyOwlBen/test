@@ -1,21 +1,8 @@
 <h1> This Is Combat </h1>
 <app-turn-tracker></app-turn-tracker>
-<div *ngIf = "entities">
-  <a *ngFor = "let entity of entities">
-    <button (click)="selectTarget(entity)">
-      {{entity.name}}
-      <button (click)="death(entity)">
-        <h3>&#9760;</h3>
-      </button>
-    </button>
-    <br>
-  </a>
-</div>
+<app-combat-entities></app-combat-entities>
+<app-current-turn></app-current-turn>
 <button (click)= "nextTurn()">Next Turn</button>
 <button (click)="entityTransfer()">End Encounter</button>
-<div *ngIf = "entities">
-  <h3> Current Turn </h3>
-  <h3>{{currentEntity.name}}</h3>
-</div>
 <app-afflictions></app-afflictions>
 
