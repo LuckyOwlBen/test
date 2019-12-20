@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { AddPlayerComponent } from '../add-player/add-player.component';
 
 @Component({
   selector: 'app-planning',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class PlanningComponent implements OnInit {
 
   constructor() { }
+  @ViewChild (AddPlayerComponent, {static:true})
+  addPlayer: AddPlayerComponent;
 
   ngOnInit() {
   }

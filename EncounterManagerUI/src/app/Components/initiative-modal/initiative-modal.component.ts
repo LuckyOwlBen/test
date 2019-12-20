@@ -48,7 +48,7 @@ export class InitiativeModalComponent implements OnInit {
 
         return 0;
       });
-      this.initiativeDataService.setData(of(this.entities));
+      this.initiativeDataService.setData(this.entities);
       this.onNoClick();
     }
   }
