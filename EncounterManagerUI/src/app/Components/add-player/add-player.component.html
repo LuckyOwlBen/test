@@ -1,12 +1,17 @@
-<div *ngIf = "entities">
-    <a *ngFor = "let entity of entities"
-      (click)= "editDialog(entity)">
-      <button mat-raised-button>
-        {{entity.name}}
-        <button mat-icon-button (click)= "(removeEntity(entity))">
-          X
-        </button>
-      </button>
-      <br>
-    </a>
+<div *ngIf = "entities.length > 0">
+  <table>
+    <tr>
+      <th>Players List</th>
+    </tr>
+    <div *ngFor = "let entity of entities">
+      <tr>
+        <td>
+          <button mat-raised-button id="list" (click)= "editDialog(entity)">
+            <span id="text">{{entity.name}}</span>
+            <button mat-icon-button (click)= "(removeEntity(entity))">X</button>
+          </button>
+        </td>
+      </tr>
+    </div>
+  </table>
 </div>

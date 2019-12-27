@@ -1,0 +1,19 @@
+app-add-player {
+  position: absolute;
+  right: 5rem;
+  top: 5rem;
+}
+
+#rollInitiative {
+  position: fixed;
+  width: 10rem;
+  right: 40rem;
+  top: 25rem;
+}
+
+#addPlayer {
+  position: fixed;
+  right: 40rem;
+  top: 20rem;
+  width: 10rem;
+}
