@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
 import { TurnTrackerComponent } from '../turn-tracker/turn-tracker.component';
 import { AfflictionsComponent } from '../afflictions/afflictions.component';
 import { CombatEntitiesComponent } from '../combat-entities/combat-entities.component';
 import { CurrentTurnComponent } from '../current-turn/current-turn.component';
 import { CombatDataService } from '../../Services/CombatData/combat-data.service';
-
+import { DeathSavingThrowModalComponent } from '../death-saving-throw-modal/death-saving-throw-modal.component';
 
 @Component({
   selector: 'app-combat',
@@ -29,6 +30,7 @@ export class CombatComponent {
   constructor(
     private router: Router,
     private combatService: CombatDataService,
+    private dialog: MatDialog,
   ) { }
 
   entityTransfer(): void {
@@ -44,5 +46,19 @@ export class CombatComponent {
     this.turnTracker.turnTracker(this.combatEntities.entities.length);
     this.combatEntities.currentEntity = this.afflictions.checkAfflicted(this.combatEntities.currentEntity);
     this.combatEntities.target = null;
+    if(this.currentTurn.currentEntity.condition.get("unconcious")) {
+      if(!this.currentTurn.currentEntity.stable) {
+        const dialogRef = this.dialog.open(DeathSavingThrowModalComponent, {
+          width: '15rem',
+          disableClose: true,
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          this.currentTurn.ngOnInit();
+            if(this.currentTurn.currentEntity.deathSavingThrowFail === 3) {
+              this.combatEntities.death(this.currentTurn.currentEntity);
+            }
+        });
+      }
+    }
   }
 }

@@ -18,6 +18,7 @@ import { AfflictionsComponent } from './Components/afflictions/afflictions.compo
 import { AfflictionModalComponent } from './Components/affliction-modal/affliction-modal.component';
 import { CombatEntitiesComponent } from './Components/combat-entities/combat-entities.component';
 import { CurrentTurnComponent } from './Components/current-turn/current-turn.component';
+import { DeathSavingThrowModalComponent } from './Components/death-saving-throw-modal/death-saving-throw-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,13 +32,15 @@ import { CurrentTurnComponent } from './Components/current-turn/current-turn.com
     AfflictionsComponent,
     AfflictionModalComponent,
     CombatEntitiesComponent,
-    CurrentTurnComponent
+    CurrentTurnComponent,
+    DeathSavingThrowModalComponent
   ],
   entryComponents: [
     AddCharacterModalComponent,
     InitiativeModalComponent,
     TargetComponent,
-    AfflictionModalComponent
+    AfflictionModalComponent,
+    DeathSavingThrowModalComponent
   ],
   imports: [
     BrowserModule,

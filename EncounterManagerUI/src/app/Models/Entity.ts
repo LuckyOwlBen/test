@@ -11,6 +11,9 @@ export class Entity {
     type: string;
     advantage: boolean;
     disadvantage: boolean;
+    stable: boolean;
+    deathSavingThrowFail = 0;
+    deathSavingThrowSuccess = 0;
     condition = this.convertConditonsToMap(this.conditionObject);
 
     private convertConditonsToMap(conditionObject: Conditions): Map<string, boolean> {
