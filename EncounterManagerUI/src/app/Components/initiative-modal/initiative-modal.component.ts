@@ -39,14 +39,7 @@ export class InitiativeModalComponent implements OnInit {
       this.selectedEntity = this.entities[this.iterator];
     } else {
       this.entities = this.entities.sort( (n1, n2) => {
-        if (n1.initiativeTotal < n2.initiativeTotal) {
-          return 1;
-        }
-        if ( n1.initiativeTotal > n2.initiativeTotal ) {
-          return -1;
-        }
-
-        return 0;
+        return  n2.initiativeTotal - n1.initiativeTotal;
       });
       this.initiativeDataService.setData(this.entities);
       this.onNoClick();
