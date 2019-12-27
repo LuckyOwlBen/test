@@ -26,9 +26,6 @@ export class AfflictionsComponent {
       if (value) {
         this.afflicted = true;
         this.afflictedBy.push(key);
-        if(key === 'blinded' || key === 'poisoned' || key === 'prone') {
-          currentEntity.disadvantage = true;
-        }
       }
     });
     if(!this.afflictedBy.length){
@@ -48,12 +45,7 @@ export class AfflictionsComponent {
         });
         dialogRef.afterClosed().subscribe(result => {
           if (this.afflictionService.getSaved()) {
-            currentEntity.condition.set(element, false)
-            if(element === 'blinded' || element === 'poisoned' || element === 'prone') {
-              if(!this.afflictedBy.includes('blinded') && !this.afflictedBy.includes('poisoned') && !this.afflictedBy.includes('prone')){
-                currentEntity.disadvantage = false;
-              }
-            }
+            currentEntity.condition.set(element, false);
           }
         });
       });

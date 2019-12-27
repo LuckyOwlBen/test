@@ -29,6 +29,8 @@ export class TargetComponent implements OnInit {
     this.currentEntity = this.combatDataService.getCurrentEntity();
     this.target = this.combatDataService.getTarget();
     this.conditionKeys = Array.from(this.target.condition.keys());
+    this.grantsAdvantage();
+    this.grantsDisadvantage();
     if(this.currentEntity.advantage || this.currentEntity.disadvantage) {
       this.conditionalRoll = true;
     } else {
@@ -101,5 +103,25 @@ export class TargetComponent implements OnInit {
     this.combatDataService.setTarget(this.target);
     this.conditionalRoll = false;
     this.dialogRef.close();
+  }
+
+  grantsAdvantage() {
+    if(this.target.condition.get("blinded") || this.currentEntity.condition.get("invisible") ||
+      this.target.condition.get("paralyzed") || this.target.condition.get("petrified") ||
+      this.target.condition.get("restrained") || this.target.condition.get("stunned") ||
+      this.target.condition.get("unconcious")) {
+        this.currentEntity.advantage = true;
+      } else {
+        this.currentEntity.advantage = false;
+      }
+  }
+
+  grantsDisadvantage() {
+    if(this.currentEntity.condition.get("blinded") || this.currentEntity.condition.get("poisoned") ||
+      this.currentEntity.condition.get("prone")) {
+        this.currentEntity.disadvantage = true;
+    } else {
+      this.currentEntity.disadvantage = false;
+    }
   }
 }
