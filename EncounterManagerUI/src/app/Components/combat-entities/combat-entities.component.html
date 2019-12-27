@@ -1,10 +1,8 @@
 <div *ngIf = "entities">
   <a *ngFor = "let entity of entities">
-    <button mat-raised-button (click)="selectTarget(entity)">
-      {{entity.name}}
-      <button mat-icon-button (click)="death(entity)">
-        &#9760;
-      </button>
+    <button mat-raised-button id="target" (click)="selectTarget(entity)">
+      <span id="name">{{entity.name}}</span>
+      <button mat-icon-button (click)="death(entity)">&#9760;</button>
     </button>
     <br>
   </a>

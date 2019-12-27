@@ -1,0 +1,29 @@
+#endEncounter {
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+  width: 10rem;
+}
+
+#nextTurn {
+  position: fixed;
+  bottom: 8rem;
+  right: 5rem;
+  width: 10rem;
+}
+
+app-turn-tracker {
+  display: flex;
+  justify-content: center;
+}
+
+app-combat-entities {
+  position: fixed;
+  right: 5rem;
+  top: 5rem;
+}
+
+app-current-turn {
+  display: flex;
+  justify-content: center;
+}

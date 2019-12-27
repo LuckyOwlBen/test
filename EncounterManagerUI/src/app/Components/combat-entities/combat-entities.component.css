@@ -1,0 +1,12 @@
+#target {
+  width: 10rem;
+}
+
+#name {
+  text-align: center;
+  text-overflow: ellipsis;
+  width: 6rem;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+}

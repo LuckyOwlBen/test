@@ -1,8 +1,7 @@
-<h1> This Is Combat </h1>
 <app-turn-tracker></app-turn-tracker>
 <app-combat-entities></app-combat-entities>
 <app-current-turn></app-current-turn>
-<button (click)= "nextTurn()">Next Turn</button>
-<button (click)="entityTransfer()">End Encounter</button>
+<button mat-raised-button id="nextTurn" (click)= "nextTurn()">Next Turn</button>
+<button mat-raised-button id="endEncounter" (click)="entityTransfer()">End Encounter</button>
 <app-afflictions></app-afflictions>
 
