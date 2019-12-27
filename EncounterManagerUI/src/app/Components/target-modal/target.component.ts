@@ -24,6 +24,7 @@ export class TargetComponent implements OnInit {
   addCondition = false;
   conditionalRoll: boolean;
   conditionTrigger: boolean;
+  negatedAdvantage: boolean;
 
   ngOnInit() {
     this.currentEntity = this.combatDataService.getCurrentEntity();
@@ -31,10 +32,15 @@ export class TargetComponent implements OnInit {
     this.conditionKeys = Array.from(this.target.condition.keys());
     this.grantsAdvantage();
     this.grantsDisadvantage();
-    if(this.currentEntity.advantage || this.currentEntity.disadvantage) {
+    if(this.currentEntity.advantage && this.currentEntity.disadvantage) {
+        this.conditionalRoll = false;
+        this.negatedAdvantage = true;
+    } else if (this.currentEntity.advantage || this.currentEntity.disadvantage){
       this.conditionalRoll = true;
+      this.negatedAdvantage = false;
     } else {
       this.conditionalRoll = false;
+      this.negatedAdvantage = false;
     }
   }
 
@@ -79,6 +85,9 @@ export class TargetComponent implements OnInit {
       this.conditionalRoll = true;
       this.conditionTrigger = false;
       this.advantage = null;
+    }
+    if(this.target.currentHp <= 0){
+      this.target.condition.set("unconcious", true);
     }
   }
 

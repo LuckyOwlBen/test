@@ -1,8 +1,16 @@
 <h3>{{currentEntity.name}} Targets {{target.name}}</h3>
 <h3>{{target.currentHp}}</h3>
 <input matInput [(ngModel)] = 'change' type = 'number' placeholder="Dice Roll Goes Here">
+<div *ngIf = "negatedAdvantage">
+  <h3>Conditional Advantage has been negated</h3>
+</div>
 <div *ngIf = "conditionalRoll">
-  <input matInput [(ngModel)] = 'advantage' type = 'number' placeholder="Conditional Dice Roll Goes Here">
+  <div *ngIf = "currentEntity.advantage">
+    <input matInput [(ngModel)] = 'advantage' type = 'number' placeholder="advantage roll">
+  </div>
+  <div *ngIf = "currentEntity.disadvantage">
+    <input matInput [(ngModel)] = 'advantage' type = 'number' placeholder = "disadvantage roll">
+  </div>
 </div>
 <div *ngIf = "!hit">
   <div *ngIf = "!conditionalRoll">
