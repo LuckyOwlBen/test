@@ -8,6 +8,7 @@ import { Entity } from '../../Models/Entity';
 export class CombatDataService {
 
   constructor() { }
+  private entity = new Observable<Entity[]>();
   private currentEntity: Entity;
   private target: Entity;
 
@@ -17,12 +18,16 @@ export class CombatDataService {
   setTarget(target: Entity) {
     this.target = target;
   }
-
+  setEntities(entity: Entity[] ) {
+    this.entity = of(entity);
+  }
   getCurrentEntity(): Entity {
     return this.currentEntity;
   }
-
   getTarget(): Entity {
     return this.target;
+  }
+  getEntities(): Observable<Entity[]> {
+    return this.entity;
   }
 }

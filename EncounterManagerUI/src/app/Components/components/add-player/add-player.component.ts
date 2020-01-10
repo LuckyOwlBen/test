@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Entity } from '../../../Models/Entity';
 import { AddCharacterModalComponent } from '../../Modals/add-character-modal/add-character-modal.component';
 import { InitiativeModalComponent } from '../../Modals/initiative-modal/initiative-modal.component';
-import { InitiativeDataService } from '../../../Services/InitiativeData/initiative-data.service';
+import { CombatDataService } from '../../../Services/CombatData/combat-data.service';
 
 @Component({
   selector: 'app-add-player',
@@ -23,7 +23,7 @@ export class AddPlayerComponent {
   constructor(
       public dialog: MatDialog,
       private router: Router,
-      private initiativeDataService: InitiativeDataService,
+      private combatData: CombatDataService,
     ) { }
 
   openDialog(): void {
@@ -61,7 +61,7 @@ export class AddPlayerComponent {
   }
 
   entityTransfer(): void {
-    this.initiativeDataService.setData(this.entities);
+    this.combatData.setEntities(this.entities);
     const dialogRef = this.dialog.open( InitiativeModalComponent, {
       width: '15rem',
       disableClose: true,

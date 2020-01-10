@@ -10,7 +10,6 @@ import { AddCharacterModalComponent } from './Components/Modals/add-character-mo
 import { PlanningComponent } from './Components/views/planning/planning.component';
 import { CombatComponent } from './Components/views/combat/combat.component';
 import { InitiativeModalComponent } from './Components/Modals/initiative-modal/initiative-modal.component';
-import { InitiativeDataService } from './Services/InitiativeData/initiative-data.service';
 import { TargetComponent } from './Components/Modals/target-modal/target.component';
 import { CombatDataService } from './Services/CombatData/combat-data.service';
 import { TurnTrackerComponent } from './Components/components/turn-tracker/turn-tracker.component';
@@ -58,7 +57,6 @@ import { AddPlayerButtonComponent } from './Components/buttons/add-player-button
 
   ],
   providers: [
-    InitiativeDataService,
     CombatDataService,
     TurnTrackerComponent,
     AfflictionsComponent,
