@@ -4,14 +4,14 @@ app-add-player {
   top: 5rem;
 }
 
-#rollInitiative {
+app-roll-initiative-button {
   position: fixed;
   width: 10rem;
   right: 40rem;
   top: 25rem;
 }
 
-#addPlayer {
+app-add-player-button {
   position: fixed;
   right: 40rem;
   top: 20rem;

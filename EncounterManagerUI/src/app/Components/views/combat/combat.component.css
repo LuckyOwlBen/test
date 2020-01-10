@@ -1,11 +1,11 @@
-#endEncounter {
+app-end-encounter {
   position: fixed;
   bottom: 5rem;
   right: 5rem;
   width: 10rem;
 }
 
-#nextTurn {
+app-next-turn-button {
   position: fixed;
   bottom: 8rem;
   right: 5rem;
