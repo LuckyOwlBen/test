@@ -5,20 +5,24 @@ import { MaterialModule } from './material.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddPlayerComponent } from './Components/add-player/add-player.component';
-import { AddCharacterModalComponent } from './Components/add-character-modal/add-character-modal.component';
-import { PlanningComponent } from './Components/planning/planning.component';
-import { CombatComponent } from './Components/combat/combat.component';
-import { InitiativeModalComponent } from './Components/initiative-modal/initiative-modal.component';
+import { AddPlayerComponent } from './Components/components/add-player/add-player.component';
+import { AddCharacterModalComponent } from './Components/Modals/add-character-modal/add-character-modal.component';
+import { PlanningComponent } from './Components/views/planning/planning.component';
+import { CombatComponent } from './Components/views/combat/combat.component';
+import { InitiativeModalComponent } from './Components/Modals/initiative-modal/initiative-modal.component';
 import { InitiativeDataService } from './Services/InitiativeData/initiative-data.service';
-import { TargetComponent } from './Components/target-modal/target.component';
+import { TargetComponent } from './Components/Modals/target-modal/target.component';
 import { CombatDataService } from './Services/CombatData/combat-data.service';
-import { TurnTrackerComponent } from './Components/turn-tracker/turn-tracker.component';
-import { AfflictionsComponent } from './Components/afflictions/afflictions.component';
-import { AfflictionModalComponent } from './Components/affliction-modal/affliction-modal.component';
-import { CombatEntitiesComponent } from './Components/combat-entities/combat-entities.component';
-import { CurrentTurnComponent } from './Components/current-turn/current-turn.component';
-import { DeathSavingThrowModalComponent } from './Components/death-saving-throw-modal/death-saving-throw-modal.component';
+import { TurnTrackerComponent } from './Components/components/turn-tracker/turn-tracker.component';
+import { AfflictionsComponent } from './Components/components/afflictions/afflictions.component';
+import { AfflictionModalComponent } from './Components/Modals/affliction-modal/affliction-modal.component';
+import { CombatEntitiesComponent } from './Components/components/combat-entities/combat-entities.component';
+import { CurrentTurnComponent } from './Components/components/current-turn/current-turn.component';
+import { DeathSavingThrowModalComponent } from './Components/Modals/death-saving-throw-modal/death-saving-throw-modal.component';
+import { NextTurnButtonComponent } from './Components/buttons/next-turn-button/next-turn-button.component';
+import { EndEncounterComponent } from './Components/buttons/end-encounter/end-encounter.component';
+import { RollInitiativeButtonComponent } from './Components/buttons/roll-initiative-button/roll-initiative-button.component';
+import { AddPlayerButtonComponent } from './Components/buttons/add-player-button/add-player-button.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +37,11 @@ import { DeathSavingThrowModalComponent } from './Components/death-saving-throw-
     AfflictionModalComponent,
     CombatEntitiesComponent,
     CurrentTurnComponent,
-    DeathSavingThrowModalComponent
+    DeathSavingThrowModalComponent,
+    NextTurnButtonComponent,
+    EndEncounterComponent,
+    RollInitiativeButtonComponent,
+    AddPlayerButtonComponent
   ],
   entryComponents: [
     AddCharacterModalComponent,

@@ -1,9 +1,0 @@
-<app-add-player></app-add-player>
-<button mat-raised-button id="addPlayer" (click)= "addPlayer.openDialog()">
-  New Character
-</button>
-<div *ngIf="addPlayer.entities.length > 1">
-  <button mat-raised-button id="rollInitiative" (click)= "addPlayer.entityTransfer()">
-     Roll Initiative
-  </button>
-</div>
