@@ -2,9 +2,9 @@
   <h3>Roll Initiative</h3>
   <label>{{selectedEntity.name}}</label>
   <mat-form-field>
-    <input matInput [(ngModel)]="selectedEntity.initiativeTotal">
+    <input matInput [(ngModel)]="selectedEntity.initiativeTotal" type="number">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click) = 'iterateArray()'>Next</button>
+  <button mat-button [disabled]="!selectedEntity.initiativeTotal" (click)='iterateArray()'>Next</button>
 </div>

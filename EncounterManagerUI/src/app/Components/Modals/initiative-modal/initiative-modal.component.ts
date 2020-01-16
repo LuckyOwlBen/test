@@ -1,9 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { Observable, of } from 'rxjs';
 import { CombatDataService } from '../../../Services/CombatData/combat-data.service';
 import { Entity } from '../../../Models/Entity';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-initiative-modal',
@@ -19,7 +17,6 @@ export class InitiativeModalComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<InitiativeModalComponent>,
     private combatData: CombatDataService,
-    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -41,7 +38,6 @@ export class InitiativeModalComponent implements OnInit {
       this.entities = this.entities.sort( (n1, n2) => {
         return  n2.initiativeTotal - n1.initiativeTotal;
       });
-      this.combatData.setEntities(this.entities);
       this.onNoClick();
     }
   }

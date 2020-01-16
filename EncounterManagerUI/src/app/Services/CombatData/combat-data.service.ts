@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Entity } from '../../Models/Entity';
 
 @Injectable({
@@ -8,26 +8,26 @@ import { Entity } from '../../Models/Entity';
 export class CombatDataService {
 
   constructor() { }
-  private entity = new Observable<Entity[]>();
-  private currentEntity: Entity;
-  private target: Entity;
+  private entity = new BehaviorSubject<Entity[]>([]);
+  private currentEntity = new BehaviorSubject<Entity>(new Entity());
+  private target = new BehaviorSubject<Entity>(new Entity());
 
   setEntity(currentEntity: Entity) {
-    this.currentEntity = currentEntity;
+    this.currentEntity.next(currentEntity);
   }
   setTarget(target: Entity) {
-    this.target = target;
+    this.target.next(target);
   }
   setEntities(entity: Entity[] ) {
-    this.entity = of(entity);
+    this.entity.next(entity);
   }
-  getCurrentEntity(): Entity {
+  getCurrentEntity(): BehaviorSubject<Entity> {
     return this.currentEntity;
   }
-  getTarget(): Entity {
+  getTarget(): BehaviorSubject<Entity> {
     return this.target;
   }
-  getEntities(): Observable<Entity[]> {
+  getEntities(): BehaviorSubject<Entity[]> {
     return this.entity;
   }
 }

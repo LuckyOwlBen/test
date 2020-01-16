@@ -12,7 +12,6 @@ export class RollInitiativeButtonComponent {
   @Output() eventEmitter = new EventEmitter<string>();
 
   rollInitiative(){
-    console.log("event emittted boss");
     this.eventEmitter.next();
   }
 

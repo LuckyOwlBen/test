@@ -13,7 +13,9 @@ export class CurrentTurnComponent implements OnInit {
   currentEntity: Entity;
 
   ngOnInit() {
-    this.currentEntity = this.combatService.getCurrentEntity();
+    this.combatService.getCurrentEntity().subscribe(currentEntity => {
+      this.currentEntity = currentEntity;
+    });
   }
 
 }

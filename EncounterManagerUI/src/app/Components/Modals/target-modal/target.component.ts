@@ -27,8 +27,12 @@ export class TargetComponent implements OnInit {
   negatedAdvantage: boolean;
 
   ngOnInit() {
-    this.currentEntity = this.combatDataService.getCurrentEntity();
-    this.target = this.combatDataService.getTarget();
+    this.combatDataService.getCurrentEntity().subscribe(entity => {
+      this.currentEntity = entity;
+    });
+    this.combatDataService.getTarget().subscribe(target => {
+      this.target = target;
+    });
     this.conditionKeys = Array.from(this.target.condition.keys());
     this.grantsAdvantage();
     this.grantsDisadvantage();
@@ -108,8 +112,6 @@ export class TargetComponent implements OnInit {
   }
 
   endActions() {
-    this.combatDataService.setEntity(this.currentEntity);
-    this.combatDataService.setTarget(this.target);
     this.conditionalRoll = false;
     this.dialogRef.close();
   }

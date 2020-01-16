@@ -1,8 +1,9 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Entity } from '../../../Models/Entity';
 import { AfflictionModalComponent } from '../../Modals/affliction-modal/affliction-modal.component';
 import { AfflictionServiceService } from '../../../Services/AfflictionService/affliction-service.service';
+import { CombatDataService } from '../../../Services/CombatData/combat-data.service';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class AfflictionsComponent {
   constructor(
     public dialog: MatDialog,
     private afflictionService: AfflictionServiceService,
+    private combatData: CombatDataService,
     ){}
 
   afflicted = false;
@@ -41,7 +43,10 @@ export class AfflictionsComponent {
         const dialogRef = this.dialog.open(AfflictionModalComponent, {
           width: '15rem',
           disableClose: true,
-          data: {condition: element},
+          data: {
+            condition: element,
+            name: currentEntity.name
+          },
         });
         dialogRef.afterClosed().subscribe(result => {
           if (this.afflictionService.getSaved()) {

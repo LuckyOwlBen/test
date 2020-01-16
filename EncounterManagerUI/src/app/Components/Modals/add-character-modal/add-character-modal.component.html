@@ -1,20 +1,20 @@
 <div mat-dialog-content>
   <label>Name</label>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.entity.name">
+    <input matInput [(ngModel)]="data.entity.name" type="text">
   </mat-form-field>
   <label>Max HP</label>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.entity.maxHp">
+    <input matInput [(ngModel)]="data.entity.maxHp" type="number">
   </mat-form-field>
   <label>Armor Class</label>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.entity.armorClass">
+    <input matInput [(ngModel)]="data.entity.armorClass" type="number">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.entity" cdkFocusInitial>Ok</button>
+  <button mat-button [disabled]="!validation()" (click)="submit()">Ok</button>
 </div>
 
 

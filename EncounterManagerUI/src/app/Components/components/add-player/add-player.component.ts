@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Entity } from '../../../Models/Entity';
@@ -12,12 +12,11 @@ import { CombatDataService } from '../../../Services/CombatData/combat-data.serv
   styleUrls: ['./add-player.component.css']
 })
 
-export class AddPlayerComponent {
+export class AddPlayerComponent implements OnInit {
 
   @Input() public newEntity: Entity;
   entities: Entity[] = [];
   selectedEntity: Entity;
-  name: string;
   currentIndex: number;
 
   constructor(
@@ -26,6 +25,14 @@ export class AddPlayerComponent {
       private combatData: CombatDataService,
     ) { }
 
+  ngOnInit() {
+    this.combatData.getEntities().subscribe((entity)=>{
+      this.entities = entity;
+    });
+    this.combatData.getCurrentEntity().subscribe((currentEntity) =>{
+      this.selectedEntity = currentEntity;
+    });
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open( AddCharacterModalComponent, {
       width: '15rem',

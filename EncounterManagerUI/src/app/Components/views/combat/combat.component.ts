@@ -1,12 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
 import { TurnTrackerComponent } from '../../components/turn-tracker/turn-tracker.component';
 import { AfflictionsComponent } from '../../components/afflictions/afflictions.component';
 import { CombatEntitiesComponent } from '../../components/combat-entities/combat-entities.component';
 import { CurrentTurnComponent } from '../../components/current-turn/current-turn.component';
 import { CombatDataService } from '../../../Services/CombatData/combat-data.service';
-import { DeathSavingThrowModalComponent } from '../../Modals/death-saving-throw-modal/death-saving-throw-modal.component';
+import { AfflictionServiceService } from '../../../Services/AfflictionService/affliction-service.service';
 
 @Component({
   selector: 'app-combat',
@@ -15,14 +14,14 @@ import { DeathSavingThrowModalComponent } from '../../Modals/death-saving-throw-
 })
 export class CombatComponent {
 
+  @ViewChild(CombatEntitiesComponent,{static: true})
+  private combatEntities: CombatEntitiesComponent;
+
   @ViewChild(TurnTrackerComponent, {static: true})
   private turnTracker: TurnTrackerComponent;
 
   @ViewChild(AfflictionsComponent,{static:true})
   private afflictions: AfflictionsComponent;
-
-  @ViewChild(CombatEntitiesComponent,{static: true})
-  private combatEntities: CombatEntitiesComponent;
 
   @ViewChild(CurrentTurnComponent, {static: true})
   private currentTurn: CurrentTurnComponent;
@@ -30,35 +29,29 @@ export class CombatComponent {
   constructor(
     private router: Router,
     private combatService: CombatDataService,
-    private dialog: MatDialog,
+    private afflictionService: AfflictionServiceService
   ) { }
 
+
   entityTransfer(): void {
+    if(this.combatService.getEntities().getValue()[0] != null){
+     this.combatService.getEntities().getValue().push(this.combatService.getCurrentEntity().getValue());
+    }
     this.router.navigate(['/planning']);
   }
 
   nextTurn() {
-    this.afflictions.removeAffliction(this.combatEntities.currentEntity);
-    this.combatEntities.entities.push(this.combatEntities.currentEntity);
-    this.combatEntities.currentEntity = this.combatEntities.entities.shift();
-    this.combatService.setEntity(this.combatEntities.currentEntity);
-    this.currentTurn.currentEntity = this.combatService.getCurrentEntity();
-    this.turnTracker.turnTracker(this.combatEntities.entities.length);
-    this.combatEntities.currentEntity = this.afflictions.checkAfflicted(this.combatEntities.currentEntity);
-    this.combatEntities.target = null;
-    if(this.currentTurn.currentEntity.condition.get("unconcious")) {
-      if(!this.currentTurn.currentEntity.stable) {
-        const dialogRef = this.dialog.open(DeathSavingThrowModalComponent, {
-          width: '15rem',
-          disableClose: true,
-        });
-        dialogRef.afterClosed().subscribe(result => {
-          this.currentTurn.ngOnInit();
-            if(this.currentTurn.currentEntity.deathSavingThrowFail === 3) {
-              this.combatEntities.death(this.currentTurn.currentEntity);
-            }
-        });
+    this.afflictions.removeAffliction(this.combatService.getCurrentEntity().getValue());
+    this.combatEntities.nextTurn();
+    this.turnTracker.turnTracker(this.combatService.getEntities().getValue().length);
+    this.combatService.setEntity(this.afflictions.checkAfflicted(this.combatService.getCurrentEntity().getValue()));
+    if(this.combatService.getCurrentEntity().getValue().condition.get("unconcious")) {
+      let event = this.afflictionService.deathSavingThrows();
+      if(event != null){
+        this.combatEntities.death(this.combatService.getCurrentEntity().getValue());
       }
+      console.log(this.combatService.getCurrentEntity().getValue().name + " is unconcious");
+      //this.nextTurn();
     }
   }
 }

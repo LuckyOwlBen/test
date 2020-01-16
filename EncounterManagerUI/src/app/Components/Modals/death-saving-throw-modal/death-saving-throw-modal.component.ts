@@ -17,7 +17,9 @@ export class DeathSavingThrowModalComponent implements OnInit {
   currentEntity: Entity;
 
   ngOnInit() {
-    this.currentEntity = this.combatData.getCurrentEntity();
+    this.combatData.getCurrentEntity().subscribe(entity => {
+      this.currentEntity = entity;
+    })
   }
 
   success() {

@@ -21,20 +21,24 @@ export class CombatEntitiesComponent implements OnInit {
   target: Entity;
 
   ngOnInit() {
-    this.combatData.getEntities().subscribe(entity => {
-      this.entities = entity;
+    this.combatData.getEntities().subscribe(entities => {
+      this.entities = entities;
     });
+    this.combatData.getTarget().subscribe(target => {
+      this.target = target;
+    });
+    this.combatData.getCurrentEntity().subscribe(current =>{
+      this.currentEntity = current;
+    })
     this.target = null;
     if (this.entities) {
       this.currentEntity = this.entities.shift();
+      this.combatData.setEntity(this.currentEntity);
     }
-    this.combatData.setEntity(this.currentEntity);
   }
 
-  selectTarget(target) {
-    this.target = target;
-    this.combatData.setEntity(this.currentEntity);
-    this.combatData.setTarget(this.target);
+  selectTarget(target: Entity) {
+    this.combatData.setTarget(target);
     const dialogRef = this.dialog.open(TargetComponent, {
       width: '15rem',
       disableClose: true,
@@ -43,6 +47,13 @@ export class CombatEntitiesComponent implements OnInit {
 
   death(entity) {
     this.entities.splice(this.entities.indexOf(entity), 1);
+  }
+
+  nextTurn() {
+    this.entities.push(this.currentEntity);
+    this.combatData.setEntity(this.entities.shift());
+    this.combatData.setEntities(this.entities);
+    this.combatData.setTarget(null);
   }
 
 }
