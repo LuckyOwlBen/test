@@ -30,4 +30,7 @@ export class CombatDataService {
   getEntities(): BehaviorSubject<Entity[]> {
     return this.entity;
   }
+  death(entity: Entity) {
+    this.entity.getValue().splice(this.entity.getValue().indexOf(entity), 1);
+  }
 }

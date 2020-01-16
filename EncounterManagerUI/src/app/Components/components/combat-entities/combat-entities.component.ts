@@ -45,8 +45,8 @@ export class CombatEntitiesComponent implements OnInit {
     });
   }
 
-  death(entity) {
-    this.entities.splice(this.entities.indexOf(entity), 1);
+  death(entity: Entity) {
+    this.combatData.death(entity);
   }
 
   nextTurn() {

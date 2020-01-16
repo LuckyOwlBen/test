@@ -46,12 +46,8 @@ export class CombatComponent {
     this.turnTracker.turnTracker(this.combatService.getEntities().getValue().length);
     this.combatService.setEntity(this.afflictions.checkAfflicted(this.combatService.getCurrentEntity().getValue()));
     if(this.combatService.getCurrentEntity().getValue().condition.get("unconcious")) {
-      let event = this.afflictionService.deathSavingThrows();
-      if(event != null){
-        this.combatEntities.death(this.combatService.getCurrentEntity().getValue());
-      }
-      console.log(this.combatService.getCurrentEntity().getValue().name + " is unconcious");
-      //this.nextTurn();
+      this.afflictionService.deathSavingThrows(this.combatService.getCurrentEntity().getValue());
+      this.nextTurn();
     }
   }
 }
