@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 
@@ -12,6 +13,7 @@ import { CombatComponent } from './Components/views/combat/combat.component';
 import { InitiativeModalComponent } from './Components/Modals/initiative-modal/initiative-modal.component';
 import { TargetComponent } from './Components/Modals/target-modal/target.component';
 import { CombatDataService } from './Services/CombatData/combat-data.service';
+import { MonsterSearch } from './Services/MonsterSearch/monster-search.service';
 import { TurnTrackerComponent } from './Components/components/turn-tracker/turn-tracker.component';
 import { AfflictionsComponent } from './Components/components/afflictions/afflictions.component';
 import { AfflictionModalComponent } from './Components/Modals/affliction-modal/affliction-modal.component';
@@ -22,6 +24,7 @@ import { NextTurnButtonComponent } from './Components/buttons/next-turn-button/n
 import { EndEncounterComponent } from './Components/buttons/end-encounter/end-encounter.component';
 import { RollInitiativeButtonComponent } from './Components/buttons/roll-initiative-button/roll-initiative-button.component';
 import { AddPlayerButtonComponent } from './Components/buttons/add-player-button/add-player-button.component';
+import { SearchMonsterComponentComponent } from './Components/components/search-monster-component/search-monster-component.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +43,8 @@ import { AddPlayerButtonComponent } from './Components/buttons/add-player-button
     NextTurnButtonComponent,
     EndEncounterComponent,
     RollInitiativeButtonComponent,
-    AddPlayerButtonComponent
+    AddPlayerButtonComponent,
+    SearchMonsterComponentComponent
   ],
   entryComponents: [
     AddCharacterModalComponent,
@@ -53,10 +57,12 @@ import { AddPlayerButtonComponent } from './Components/buttons/add-player-button
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
 
   ],
   providers: [
+    MonsterSearch,
     CombatDataService,
     TurnTrackerComponent,
     AfflictionsComponent,

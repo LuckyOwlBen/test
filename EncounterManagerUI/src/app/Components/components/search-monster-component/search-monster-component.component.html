@@ -1,0 +1,52 @@
+<button (click) = getMonster(name)>Search</button>
+<input matInput [(ngModel)]="name" type="text">
+
+<div *ngIf = "monster">
+  <div >
+    {{monster.name}}
+    {{monster.size}}
+    {{monster.type}}
+    {{monster.subtype}}
+    {{monster.alignment}}
+    {{monster.armorClass}}
+    {{monster.hitPoints}}
+    {{monster.hitDice}}
+    {{monster.speed.swim}}
+    {{monster.speed.walk}}
+    {{monster.strength}}
+    {{monster.dexterity}}
+    {{monster.constitution}}
+    {{monster.intelligence}}
+    {{monster.wisdom}}
+    {{monster.charisma}}
+    {{monster.senses.darkvision}}
+    {{monster.senses.passivePerception}}
+    {{monster.challengeRating}}
+    {{monster.languages}}
+    <div *ngFor = "let proficency of monster.proficiencies">
+      {{proficency.name}}
+      {{proficency.value}}
+    </div>
+    <div *ngFor = "let special of monster.specialAbilities">
+      {{special.name}}
+      {{special.desc}}
+    </div>
+    <div *ngFor = "let action of monster.actions">
+      {{action.name}}
+      {{action.useage}}
+      <!--{{action.dc.dcType.name}}-->
+      <!--{{action.dc.dcValue}}-->
+      <!--{{action.dc.successType}}-->
+      {{action.desc}}
+      <!--{{action.damage.damageType}}-->
+      <!--{{action.damage.damageDice}}-->
+      <!--{{action.damage.damageBonus}}-->
+    </div>
+    <div *ngFor = "let legendaryAction of monster.legendaryActions">
+      {{legendaryAction.name}}
+      {{legendaryAction.desc}}
+    </div>
+    {{monster.url}}
+
+  </div>
+</div>
