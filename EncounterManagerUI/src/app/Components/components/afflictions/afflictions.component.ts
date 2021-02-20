@@ -50,6 +50,10 @@ export class AfflictionsComponent {
         });
         dialogRef.afterClosed().subscribe(result => {
           if (this.afflictionService.getSaved()) {
+            if(element === "unconcious") {
+              currentEntity.deathSavingThrowFail = 0;
+              currentEntity.deathSavingThrowSuccess = 0;
+            }
             currentEntity.condition.set(element, false);
           }
         });
